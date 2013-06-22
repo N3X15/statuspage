@@ -15,6 +15,7 @@ require_once ('template.inc.php');
 require_once ('status.class.php');
 require_once ('facilities.class.php');
 require_once ('authentication.class.php');
+require_once ('twitter.class.php');
 
 // Helper function, since we're apparently so fond of using indices that may or may not be present.
 function getFromArray($arr, $idx, $default = '')
