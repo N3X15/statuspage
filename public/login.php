@@ -1,15 +1,20 @@
 <?php
-	include('../includes/base.inc.php');
-	$auth = new Authentication;
+include ('../includes/base.inc.php');
+$auth = new Authentication;
 
-	if (isset($_POST['username'], $_POST['password'])) {
-		$login = $auth->login($_POST['username'], $_POST['password']);
+$error = '';
+if (isset($_POST['username'], $_POST['password'])) {
+	$login = $auth->login($_POST['username'], $_POST['password']);
 
-		if ($login) header('Location: index.php');
-		$tpl->assign('error', 'Invalid username or password');
+	if ($login) {
+		header('Location: index.php');
+	} else {
+		$error = 'Invalid username or password';
 	}
+}
+$tpl->assign('error', $error);
 
-	$tpl->display('_header.tpl.php');
-	$tpl->display('login.tpl.php');
-	$tpl->display('_footer.tpl.php');
+$tpl->display('_header.tpl.php');
+$tpl->display('login.tpl.php');
+$tpl->display('_footer.tpl.php');
 ?>

@@ -4,7 +4,7 @@
 				<fieldset>
 					<legend>Login</legend>
 
-					<?if($this->error):?><p class="error"><?=$this->error?></p><?endif;?>
+					<?if(strlen($this->error)>0):?><p class="error"><?=$this->error?></p><?endif;?>
 
 					<p>
 						<label for="username">Username:</label>

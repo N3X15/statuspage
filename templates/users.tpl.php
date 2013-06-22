@@ -1,6 +1,6 @@
 	<div class="wrapper">
 		<div id="content" class="users">
-			<?if($this->error):?><p class="error"><?=$this->error?></p><?endif;?>
+			<?if(strlen($this->error)>0):?><p class="error"><?=$this->error?></p><?endif;?>
 
 			<h2>Change Password</h2>
 			<form action="" method="post" id="changepwform">
