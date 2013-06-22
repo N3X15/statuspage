@@ -31,7 +31,7 @@
 							<?foreach($facility['scheduled'] as $date => $events):?><li><?=$date?>
 								<ul>
 									<?foreach($events as $event):?><li>
-										<span class="time"><?=date('I:M p Z',$event['timeopened'])?></span>
+										<span class="time"><?=strftime('%I:%M %p %Z',$event['timeopened'])?></span>
 										<?=(strlen($event['title'])>26) ? substr($event['title'],0,26).'...' : $event['title'] ?><?if($event['maintenancedesc']):?>
 										<span class="readmore"><a href="#" id="readmore-<?=$event['id']?>">Read More</a></span><?endif;?>
 									<?endforeach;?></li>
@@ -66,7 +66,7 @@
 						<div class="updates">
 							<?if(count($incident['updates']) > 0):?><?foreach($incident['updates'] as $update):?>
 							<div class="update">
-								<span class="timestamp"><?=date('I:M p Z',$update['timeadded'])?></span>
+								<span class="timestamp"><?=strftime('I:M p Z',$update['timeadded'])?></span>
 								<span class="message"><?=$update['message']?></span>
 							</div>
 							<?endforeach;?><?endif;?>
@@ -93,7 +93,7 @@
 					<?foreach($this->facilities as $facility):?><option value="<?=$facility['id']?>"><?=$facility['friendly_name']?></option><?endforeach;?>
 				</select>
 				<label for="timeopened">Date/Time of Incident:</label>
-				<input type="text" name="timeopened" id="timeopened" value="<?=date("m/d/Y I:M p")?>" />
+				<input type="text" name="timeopened" id="timeopened" value="<?=strftime("m/d/Y I:M p")?>" />
 				<label for="title">Short Title:</label>
 				<input type="text" name="title" id="title" />
 				<div id="maintfields">
@@ -163,7 +163,7 @@
 <?foreach($facility['scheduled'] as $day => $events):?><?foreach($events as $event):?>
 		$("#readmore-<?=$event['id']?>").click(function(){
 			$("#readmorebox").dialog('close');
-			$("#readmorebox").html('<p><?=date('m/d/Y I:M p Z',$event['timeopened'])?><br /><strong><?=addslashes($event['title'])?></strong></p></p><p><?=trim(addslashes(str_replace("\r",'',str_replace("\n",'',nl2br(htmlspecialchars($event['maintenancedesc']))))))?></p>');
+			$("#readmorebox").html('<p><?=strftime('%m/%d/%Y %I:%M %p %Z',$event['timeopened'])?><br /><strong><?=addslashes($event['title'])?></strong></p></p><p><?=trim(addslashes(str_replace("\r",'',str_replace("\n",'',nl2br(htmlspecialchars($event['maintenancedesc']))))))?></p>');
 			$("#readmorebox").dialog('open');
 			return false;
 		});

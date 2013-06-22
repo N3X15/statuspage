@@ -28,7 +28,7 @@
 				<?endif;?>
 				<div id="title">
 					<h2>Network Status</h2>
-					<div id="lastupdate">as of <?=date("I:M p \o\n %D")?></div>
+					<div id="lastupdate">as of <?=strftime('%I:%M %p \o\n %D')?></div>
 					<div id="autorefresh"><label for="autorefreshbox" id="refreshlabel">Auto Refresh</label><input type="checkbox" id="autorefreshbox" /></div>
 				</div>
 			</div>
