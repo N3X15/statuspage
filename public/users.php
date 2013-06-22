@@ -41,7 +41,7 @@
 
 	$tpl->assign('users', $allusers);
 
-	$tpl->display('_header.tpl');
-	$tpl->display('users.tpl');
-	$tpl->display('_footer.tpl');
+	$tpl->display('_header.tpl.php');
+	$tpl->display('users.tpl.php');
+	$tpl->display('_footer.tpl.php');
 ?>

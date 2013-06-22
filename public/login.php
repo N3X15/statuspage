@@ -10,7 +10,7 @@
 		$tpl->assign('error', 'Invalid username or password');
 	}
 
-	$tpl->display('_header.tpl');
-	$tpl->display('login.tpl');
-	$tpl->display('_footer.tpl');
+	$tpl->display('_header.tpl.php');
+	$tpl->display('login.tpl.php');
+	$tpl->display('_footer.tpl.php');
 ?>

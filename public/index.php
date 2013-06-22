@@ -47,7 +47,7 @@
 	$tpl->assign('report_days', $config['days_to_report']);
 	$tpl->assign('twitter_handle', $config['twitter_handle']);
 
-	$tpl->display('_header.tpl');
-	$tpl->display('index.tpl');
-	$tpl->display('_footer.tpl');
+	$tpl->display('_header.tpl.php');
+	$tpl->display('index.tpl.php');
+	$tpl->display('_footer.tpl.php');
 ?>
