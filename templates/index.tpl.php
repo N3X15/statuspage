@@ -55,7 +55,7 @@
 					<?foreach($facility['incidents'] as $day => $incidents):?>
 					<h4><?=$day?></h4>
 					
-					<?foreach($incidents as $incident):?>
+					<?if(count($incidents)>0):foreach($incidents as $incident):?>
 					<div class="incident severity-<?=$incident['severity']?>">
 						<div class="incidentheader">
 							<span id="changeseverity-<?=$incident['id']?>"><img src="images/ico_<?=$incident['severity']?>_small.gif" alt="<?=$incident['severity']?>" /></span>
@@ -74,8 +74,9 @@
 						</div>
 					</div>
 					<?endforeach;?>
-					{foreachelse}
+					<?else:?>
 						<p>No recent incidents were found.</p>
+					<?endif;?>
 					<?endforeach;?>
 				</div>
 			</div>
