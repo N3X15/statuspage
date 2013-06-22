@@ -131,7 +131,9 @@
 
 
 
-<?foreach($this->facilities as $facility):?><?foreach($facility['incidents'] as $day => $incidents):?><?foreach($incidents as $incident):?>
+<?foreach($this->facilities as $facility):
+	foreach($facility['incidents'] as $day => $incidents):
+		foreach($incidents as $incident):?>
 	<script type="text/javascript">
 	$("#changestatus-<?=$incident['id']?>").editable('save.php', {
 		data	: " {'Investigating':'Investigating','Implementing Fix':'Implementing Fix','Resolved':'Resolved', 'selected':'<?=$incident['status']?>'}",
@@ -151,17 +153,23 @@
 			
 		</form>
 	</div>
-	<?endforeach;?><?endforeach;?>
-<?foreach($facility['services'] as $day => $service):?>
+	<?
+		endforeach;
+	endforeach;?>
+<?	foreach($facility['services'] as $day => $service):
+		$severity='';
+		if(array_key_exists('severity', $service))
+			$severity=", 'selected':'{$service['severity']}'";
+?>
 	<script type="text/javascript">
 	$("#changeservice-<?=$service['id']?>").editable('save.php', {
-		data	: " {'online':'Online','warning':'Warning','offline':'Offline', 'selected':'<?=$service['severity']?>'}",
+		data	: " {'online':'Online','warning':'Warning','offline':'Offline'<?=$severity?>}",
 		type	: 'select',
 		submit	: 'OK',
 		style	: 'display:inline' });
 	</script>
-<?endforeach;?>
-<?endforeach;?>
+<?	endforeach;
+endforeach;?>
 <?endif;?>
 
 <div id="readmorebox"></div>
