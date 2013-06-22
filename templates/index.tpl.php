@@ -66,7 +66,7 @@
 						<div class="updates">
 							<?if(count($incident['updates']) > 0):?><?foreach($incident['updates'] as $update):?>
 							<div class="update">
-								<span class="timestamp"><?=strftime('I:M p Z',$update['timeadded'])?></span>
+								<span class="timestamp"><?=strftime('%I:%M %p %Z',$update['timeadded'])?></span>
 								<span class="message"><?=$update['message']?></span>
 							</div>
 							<?endforeach;?><?endif;?>
@@ -93,7 +93,7 @@
 					<?foreach($this->facilities as $facility):?><option value="<?=$facility['id']?>"><?=$facility['friendly_name']?></option><?endforeach;?>
 				</select>
 				<label for="timeopened">Date/Time of Incident:</label>
-				<input type="text" name="timeopened" id="timeopened" value="<?=strftime("m/d/Y I:M p")?>" />
+				<input type="text" name="timeopened" id="timeopened" value="<?=strftime("%m/%d/%Y %I:%M %p")?>" />
 				<label for="title">Short Title:</label>
 				<input type="text" name="title" id="title" />
 				<div id="maintfields">
