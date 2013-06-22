@@ -2,7 +2,6 @@
 
 class Users {
 	private $db;
-
 	function __construct() {
 		global $db;
 

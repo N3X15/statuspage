@@ -2,7 +2,7 @@
 require_once('../includes/base.inc.php');
 require_once('../includes/status.class.php');
 
-	if (!empty($_SESSION['auth']['id'])) {
+	if (Authentication::amLoggedIn()) {
 		if (isset($_POST)) {
 			if (isset($_POST['id']) && isset($_POST['value'])) {
 				$key = explode('-', $_POST['id']);

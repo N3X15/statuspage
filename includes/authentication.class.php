@@ -10,6 +10,12 @@ class Authentication {
 
 		$this->db = $db;
 	}
+	
+	public static function amLoggedIn(){
+		//$_SESSION['auth']['id']
+		return array_key_exists('auth', $_SESSION);
+	}
+	
 
 	function changePassword($username, $oldpw, $newpw) {
 		if (empty($username)) throw new Exception('A username must be specified');

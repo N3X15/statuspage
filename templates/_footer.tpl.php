@@ -6,10 +6,10 @@
 				<?endif;?>
 				<div class="text">
 					<ul>
-						<?foreach($footer_links as $link):?>
-						<li><a href="{$link.url}">{$link.title}</a></li>
+						<?foreach($this->footer_links as $link):?>
+						<li><a href="<?=$link['url']?>"><?=$link['title']?></a></li>
 						<?endforeach;?>
-						<li><iframe src="github-buttons/github-btn.html?user=limestonenetworks&repo=statuspage&type=watch"  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+						<li><iframe src="github-buttons/github-btn.html?user=N3X15&repo=statuspage&type=watch"  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
 					</ul>
 				</div>
 			</div>

@@ -1,8 +1,8 @@
 <?php
-
-if(!file_exists('config.php'))
+$cfgFile = dirname(__FILE__).'/config.php';
+if(!file_exists($cfgFile))
 {
-	die('Please configure by renaming includes/config.php.dist to config.php, and then editing the resulting file.');
+        die('Please configure by renaming '.$cfgFile.'.dist to config.php, and then editing the resulting file.');
 }
 include('config.php');
 
@@ -15,5 +15,3 @@ $db = $db_conn->sqlite;
 require_once('template.inc.php');
 require_once('status.class.php');
 require_once('facilities.class.php');
-
-?>

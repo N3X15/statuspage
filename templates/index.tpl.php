@@ -70,7 +70,15 @@
 								<span class="message"><?=$update['message']?></span>
 							</div>
 							<?endforeach;?><?endif;?>
-							<?if($_SESSION['auth']['id']):?><p><form action="" method="post" class="microupdate"><input type="text" name="update" class="updatebox" id="updateto<?=$incident['id']?>" /><p class="posttotwitter"><input type="checkbox" name="twitter" class="micrototwitter" checked="CHECKED" /> Post to Twitter</p><input type="hidden" name="incidentid" value="<?=$incident['id']?>"></form><?endif;?>
+							<?if(Authentication::amLoggedIn()):?><p>
+								<form action="" method="post" class="microupdate">
+									<input type="text" name="update" class="updatebox" id="updateto<?=$incident['id']?>" />
+									<p class="posttotwitter">
+										<input type="checkbox" name="twitter" class="micrototwitter" checked="CHECKED" /> Post to Twitter
+									</p>
+									<input type="hidden" name="incidentid" value="<?=$incident['id']?>">
+							</form>
+							<?endif;?>
 						</div>
 					</div>
 					<?endforeach;?>
@@ -84,7 +92,7 @@
 		</div>
 	</div>
 
-<?if($_SESSION['auth']['id']):?>
+<?if(Authentication::amLoggedIn()):?>
 	<div id="addincident" class="ui-widget">
 		<form action="" method="post" id="addincidentform">
 		<fieldset>

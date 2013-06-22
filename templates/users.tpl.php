@@ -28,7 +28,7 @@
 
 			<h2>All Users</h2>
 			<ul>
-				<?foreach($users as $user):?><li><?=$user['username']?> <?if($user['id'] != $_SESSION['auth']['id']):?>[<a href="?delete=<?=$user['id']?>">delete</a>]<?endif;?></li><?endforeach;?>
+				<?foreach($this->users as $user):?><li><?=$user['username']?> <?if($user['id'] != $_SESSION['auth']['id']):?>[<a href="?delete=<?=$user['id']?>">delete</a>]<?endif;?></li><?endforeach;?>
 			</ul>
 		</div>
 	</div>

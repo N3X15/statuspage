@@ -1,7 +1,7 @@
 <?php
 	include('../includes/base.inc.php');
 
-	if (!empty($_SESSION['auth']['id'])) {
+	if (Authentication::amLoggedIn()) {
 		if (!empty($_POST)) {
 			if (isset($_POST['incidentid'], $_POST['update'])) {
 				$status = new Status;
