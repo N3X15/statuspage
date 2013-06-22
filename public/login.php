@@ -1,6 +1,5 @@
 <?php
 	include('../includes/base.inc.php');
-	include('../includes/authentication.class.php');
 	$auth = new Authentication;
 
 	if (isset($_POST['username'], $_POST['password'])) {
