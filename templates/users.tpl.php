@@ -1,6 +1,6 @@
 	<div class="wrapper">
 		<div id="content" class="users">
-			{if $error}<p class="error">{$error}</p>{/if}
+			<?if($this->error):?><p class="error"><?=$this->error?></p><?endif;?>
 
 			<h2>Change Password</h2>
 			<form action="" method="post" id="changepwform">
@@ -28,7 +28,7 @@
 
 			<h2>All Users</h2>
 			<ul>
-				{foreach from=$users item=user}<li>{$user.username} {if $user.id neq $smarty.session.auth.id}[<a href="?delete={$user.id}">delete</a>]{/if}</li>{/foreach}
+				<?foreach($users as $user):?><li><?=$user['username']?> <?if($user['id'] != $_SESSION['auth']['id']):?>[<a href="?delete=<?=$user['id']?>">delete</a>]<?endif;?></li><?endforeach;?>
 			</ul>
 		</div>
 	</div>

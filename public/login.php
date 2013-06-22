@@ -7,10 +7,10 @@
 		$login = $auth->login($_POST['username'], $_POST['password']);
 
 		if ($login) header('Location: index.php');
-		$smarty->assign('error', 'Invalid username or password');
+		$tpl->assign('error', 'Invalid username or password');
 	}
 
-	$smarty->display('_header.tpl');
-	$smarty->display('login.tpl');
-	$smarty->display('_footer.tpl');
+	$tpl->display('_header.tpl');
+	$tpl->display('login.tpl');
+	$tpl->display('_footer.tpl');
 ?>

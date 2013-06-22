@@ -1,16 +1,18 @@
 <?php
-require_once('smarty/Smarty.class.php');
-$smarty = new Smarty();
+require_once ('Savant3.php');
+$tpl = new Savant3();
+$tpl -> addPath('template', "{$config['app_path']}/templates/");
 
-$smarty->template_dir = "{$config['app_path']}/public/templates/{$config['template_name']}";
-$smarty->compile_dir = $config['cache_path'];
+// Some default things
+if (!isset($config['pagetitle']))
+	$config['pagetitle'] = 'Network Status';
+if (!isset($config['footer_links']))
+	$config['footer_links'] = null;
+if (!isset($config['textarea']))
+	$config['textarea'] = null;
+$tpl -> assign('pagetitle', $config['pagetitle']);
+$tpl -> assign('footer_links', $config['footer_links']);
+$tpl -> assign('textarea', $config['textarea']);
 
-if (!isset($config['pagetitle'])) $config['pagetitle'] = 'Network Status';
-if (!isset($config['footer_links'])) $config['footer_links'] = null;
-if (!isset($config['textarea'])) $config['textarea'] = null;
-$smarty->assign('pagetitle', $config['pagetitle']);
-$smarty->assign('footer_links', $config['footer_links']);
-$smarty->assign('textarea', $config['textarea']);
-
-if ($config['smarty_debug']) $smarty->debugging = true;
-?>
+if ($config['smarty_debug'])
+	$tpl -> debugging = true;

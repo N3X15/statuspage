@@ -42,12 +42,12 @@
 		$facilities[$key]['scheduled'] = $status->getScheduled($value['id']);
 	}
 
-	$smarty->assign('facilities', $facilities);
+	$tpl->assign('facilities', $facilities);
 
-	$smarty->assign('report_days', $config['days_to_report']);
-	$smarty->assign('twitter_handle', $config['twitter_handle']);
+	$tpl->assign('report_days', $config['days_to_report']);
+	$tpl->assign('twitter_handle', $config['twitter_handle']);
 
-	$smarty->display('_header.tpl');
-	$smarty->display('index.tpl');
-	$smarty->display('_footer.tpl');
+	$tpl->display('_header.tpl');
+	$tpl->display('index.tpl');
+	$tpl->display('_footer.tpl');
 ?>
