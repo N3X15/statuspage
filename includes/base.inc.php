@@ -1,5 +1,9 @@
 <?php
 
+if(!file_exists('config.php'))
+{
+	die('Please configure by renaming includes/config.php.dist to config.php, and then editing the resulting file.');
+}
 include('config.php');
 
 session_start();
