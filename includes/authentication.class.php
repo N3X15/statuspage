@@ -1,43 +1,58 @@
 <?php
 
-class Authentication {
+class Authentication
+{
 	private $db;
 
-	function __construct() {
+	function __construct()
+	{
 		global $db;
 
-		if (empty($db)) throw new Exception('Unable to contact database');
+		if (empty($db))
+			throw new Exception('Unable to contact database');
 
 		$this->db = $db;
 	}
-	
-	public static function amLoggedIn(){
+
+	/**
+	 * Just a simple check to see if we're logged in.
+	 *
+	 * @return bool Logged in with valid session.
+	 */
+	public static function amLoggedIn()
+	{
 		//$_SESSION['auth']['id']
 		return array_key_exists('auth', $_SESSION);
 	}
-	
 
-	function changePassword($username, $oldpw, $newpw) {
-		if (empty($username)) throw new Exception('A username must be specified');
-		if (empty($oldpw) || empty($newpw)) throw new Exception('Old and New passwords cannot be empty');
-		
+	function changePassword($username, $oldpw, $newpw)
+	{
+		if (empty($username))
+			throw new Exception('A username must be specified');
+		if (empty($oldpw) || empty($newpw))
+			throw new Exception('Old and New passwords cannot be empty');
+
 		$user = $this->testCredentials($username, $oldpw);
-		if (!isset($user['id'])) throw new Exception('Invalid original password');
+		if (!isset($user['id']))
+			throw new Exception('Invalid original password');
 
 		$passhash = md5($newpw);
 
 		$sql = $this->db->prepare('UPDATE users SET password=:pass WHERE username=:username');
 		$sql->bindValue(':pass', $passhash, SQLITE3_TEXT);
 		$sql->bindValue(':username', $username, SQLITE3_TEXT);
-		
-		if ($sql->execute()) return true;
+
+		if ($sql->execute())
+			return true;
 		return false;
 	}
 
-	function login($user, $pass) {
+	function login($user, $pass)
+	{
 		global $_SESSION;
 
-		if (empty($user) || empty($pass)) throw new Exception('Username and Password cannot be empty');
+		if (empty($user) || empty($pass))
+			throw new Exception('Username and Password cannot be empty');
 
 		$user = $this->testCredentials($user, $pass);
 
@@ -45,13 +60,15 @@ class Authentication {
 			$_SESSION['auth']['id'] = $user['id'];
 			$_SESSION['auth']['user'] = $user['username'];
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
-	private function testCredentials($user, $pass) {
-		if (empty($user) || empty($pass)) throw new Exception('Username and Password cannot be empty');
+	private function testCredentials($user, $pass)
+	{
+		if (empty($user) || empty($pass))
+			throw new Exception('Username and Password cannot be empty');
 
 		$passhash = md5($pass);
 
@@ -62,15 +79,17 @@ class Authentication {
 
 		$user = $select->fetchArray(SQLITE3_ASSOC);
 
-		if (empty($user['id'])) return false;
+		if (empty($user['id']))
+			return false;
 		return $user;
 	}
 
-	function logout() {
+	function logout()
+	{
 		global $_SESSION;
 		$_SESSION = array();
 		return true;
 	}
-}
 
+}
 ?>

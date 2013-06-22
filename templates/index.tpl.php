@@ -44,7 +44,7 @@
 					<?if(isset($textarea)):?>
 					<div class="uhHuh">
 						<div class="title"><?=$textarea['heading']?></div>
-						<p><?$textarea['text']?></p>
+						<p><?=$textarea['text']?></p>
 					</div>
 					<?endif;?>
 				</div>
@@ -74,10 +74,14 @@
 								<form action="" method="post" class="microupdate">
 									<input type="text" name="update" class="updatebox" id="updateto<?=$incident['id']?>" />
 									<p class="posttotwitter">
+									<?if(Twitter::canPostToTwitter()):?>
 										<input type="checkbox" name="twitter" class="micrototwitter" checked="CHECKED" /> Post to Twitter
+									<?else:?>
+										<input type="checkbox" name="twitter" class="micrototwitter" readonly="readonly" /> Post to Twitter <sup>(NOT CONFIGURED!)</sup>
+									<?endif;?>
 									</p>
 									<input type="hidden" name="incidentid" value="<?=$incident['id']?>">
-							</form>
+								</form>
 							<?endif;?>
 						</div>
 					</div>
@@ -123,8 +127,11 @@
 					<label for="initialupdate">Initial Update:</label>
 					<input type="text" name="update" id="initialupdate" />
 				</div>
-				<label for="incidenttwitter">Send to Twitter:</label>
+				<?if(Twitter::canPostToTwitter()):?><label for="incidenttwitter">Send to Twitter:</label>
 				<input type="checkbox" name="twitter" id="incidenttwitter" checked="CHECKED" />
+				<?else:?><label for="incidenttwitter" disabled="disabled">(Can't tweet, configure me!)</label>
+				<input type="checkbox" name="twitter" id="incidenttwitter" readonly="readonly" />
+				<?endif?>
 		</fieldset>
 		</form>
 	</div>

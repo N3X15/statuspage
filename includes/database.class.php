@@ -1,30 +1,34 @@
 <?php
 
-class Database {
+class Database
+{
 	private $dbpath;
 	public $sqlite;
 
-	function __construct($dbpath) {
+	function __construct($dbpath)
+	{
 		$this->dbpath = $dbpath;
-		$this->initialize();	
+		$this->initialize();
 	}
 
-	function _get_count_result($handle) {
+	function _get_count_result($handle)
+	{
 		$count = 0;
 		if (gettype($handle) == 'object') {
-                        $row = array();
+			$row = array();
 			$row = $handle->fetchArray();
-                        $count = $row['COUNT(*)'];
-                }
-                else {
-                        $count = $handle;
-                }
+			$count = $row['COUNT(*)'];
+		} else {
+			$count = $handle;
+		}
 
 		return $count;
 	}
 
-	function initialize() {
-		if (($this->sqlite = new SQLite3($this->dbpath)) === false) throw new Exception('Unable to save database file.');
+	function initialize()
+	{
+		if (($this->sqlite = new SQLite3($this->dbpath)) === false)
+			throw new Exception('Unable to save database file.');
 
 		$check_users = @$this->sqlite->query('SELECT COUNT(*) FROM users');
 		$check_users_count = $this->_get_count_result($check_users);
@@ -35,7 +39,7 @@ class Database {
 
 			// Creating default user
 			$query = $this->sqlite->prepare("INSERT INTO users (username, password) VALUES ('admin', :adminpass)");
-			$query->bindValue(':adminpass',  md5('admin'), SQLITE3_TEXT);
+			$query->bindValue(':adminpass', md5('admin'), SQLITE3_TEXT);
 			$result = $query->execute();
 		}
 
@@ -54,7 +58,6 @@ class Database {
 				$query->execute();
 			}
 		}
-
 
 		$check_facilities_services = @$this->sqlite->query('SELECT COUNT(*) FROM facilities_services');
 		$check_facilities_services_count = $this->_get_count_result($check_facilities_services);
@@ -109,6 +112,6 @@ class Database {
 			$this->sqlite->query("CREATE INDEX incidents_updates_incidents_id ON incidents_updates(incidents_id)");
 		}
 	}
-}
 
+}
 ?>
