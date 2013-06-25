@@ -85,7 +85,7 @@ a {
 	margin: 10px;
 	width: 98%;
 	border: 1px solid #ccc;
-	background-image: url('../images/statbar_bg.jpg');
+	background-image: url('/images/statbar_bg.jpg');
 	background-position: top;
 	background-repeat: repeat-x;
 	background-color: #eee;
