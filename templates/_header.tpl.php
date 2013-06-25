@@ -21,11 +21,7 @@
 	<body>
 		<div id="header">
 			<div class="wrapper">
-				<?if(file_exists('images/logo.gif')):?>
-				<h1><a href="index.php"><img src="images/logo.gif" alt="<?=$this->pagetitle?>" /></a></h1>
-				<?else:?>
-				<h1>Kerbal Space Program - Network Status</h1>
-				<?endif;?>
+				<h1><a href="index.php"><img src="images/logo.png" alt="<?=$this->pagetitle?>" /></a></h1>
 				<div id="title">
 					<h2>Network Status</h2>
 					<div id="lastupdate">as of <?=strftime('%I:%M %p on %D')?></div>
