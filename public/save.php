@@ -31,6 +31,16 @@ require_once('../includes/status.class.php');
 						$status->updateIncident($update);
 						die($_POST['value']);
 						break;
+					case 'remove':
+						if($_POST['value']=='yes')
+						{
+							$status = new Status;
+							$status->removeIncident(array('incidents_id'=>$key[1]));
+							die('yes');
+						} else {
+							die('no');
+						}
+						break;
 				}
 				
 			}

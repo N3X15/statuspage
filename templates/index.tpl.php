@@ -34,6 +34,9 @@
 										<span class="time"><?=strftime('%I:%M %p %Z',$event['timeopened'])?></span>
 										<?=(strlen($event['title'])>26) ? substr($event['title'],0,26).'...' : $event['title'] ?><?if($event['maintenancedesc']):?>
 										<span class="readmore"><a href="#" id="readmore-<?=$event['id']?>">Read More</a></span><?endif;?>
+										<?if(Authentication::amLoggedIn()):?>
+										<a class="remove-scheduled" href="#" id="rm-scheduled-<?=$event['id']?>">&times;</a>
+										<?endif;?>
 									<?endforeach;?></li>
 								</ul>
 							</li>
@@ -190,6 +193,13 @@ endforeach;?>
 			$("#readmorebox").dialog('open');
 			return false;
 		});
+		<?if(Authentication::amLoggedIn()):?>
+		$("#remove-<?=$event['id']?>").editable('save.php', {
+		data	: " {'yes':'I am sure','no':'No, I am not sure.'}",
+		type	: 'select',
+		submit	: 'OK',
+		style	: 'display:inline' });
+		<?endif;?>
 <?endforeach;?><?endforeach;?>
 	</script>
 <?endif;?>

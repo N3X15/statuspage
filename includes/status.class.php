@@ -74,7 +74,14 @@ class Status {
 
 		return $insert;
 	}
+	function removeIncident($data) {
+		if (!is_array($data)) throw new Exception('Data must be an array');
+		if (empty($data['incidents_id'])) throw new Exception('An incident ID must be specified');
 
+		$sql = $this->db->prepare("DELETE FROM incidents WHERE id=:iid LIMIT 1");
+		$sql->bindValue(':iid', $data['incidents_id'], SQLITE3_INTEGER);
+		$sql->execute();
+	}
 	function updateIncident($data) {
 		if (!is_array($data)) throw new Exception('Data must be an array');
 		if (empty($data['incidents_id'])) throw new Exception('An incident ID must be specified');
