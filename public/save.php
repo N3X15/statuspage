@@ -36,9 +36,9 @@ require_once('../includes/status.class.php');
 						{
 							$status = new Status;
 							$status->removeIncident(array('incidents_id'=>$key[1]));
-							die('yes');
+							die('<span style="color:#cccccc">(DELETED)</span>');
 						} else {
-							die('no');
+							die('&times;');
 						}
 						break;
 				}
