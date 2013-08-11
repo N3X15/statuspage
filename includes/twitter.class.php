@@ -15,6 +15,7 @@ class Twitter
 	 * @return bool Yes, we can!
 	 */
 	public static function canPostToTwitter() {
+		global $config;
 		return !empty($config['twitter_key'])
 		&& !empty($config['twitter_secret'])
 		&& !empty($config['twitter_oauth_token'])
